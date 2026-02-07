@@ -1,8 +1,55 @@
 
 import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Point, RiverData, LabelResult } from './types';
-import { parseWKTPolygon } from './utils/wktParser.ts';
-import { getBounds, findOptimalLabelPosition } from './utils/geometry.ts';
+
+function parseWKTPolygon(wkt: string): Point[] {
+  const cleaned = wkt
+    .trim()
+    .replace(/^POLYGON\s*\(\(/i, '')
+    .replace(/\)\)$/i, '');
+
+  return cleaned.split(',').map(pair => {
+    const [x, y] = pair.trim().split(/\s+/).map(Number);
+    return { x, y };
+  });
+}
+
+function getBounds(points: Point[]) {
+  const xs = points.map(p => p.x);
+  const ys = points.map(p => p.y);
+
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+
+  return {
+    minX,
+    minY,
+    maxX,
+    maxY,
+    width: maxX - minX,
+    height: maxY - minY,
+  };
+}
+
+function findOptimalLabelPosition(
+  points: Point[],
+  _text: string,
+  fontSize: number
+): LabelResult {
+  const cx = points.reduce((s, p) => s + p.x, 0) / points.length;
+  const cy = points.reduce((s, p) => s + p.y, 0) / points.length;
+
+  return {
+    position: { x: cx, y: cy },
+    rotation: 0,
+    actualFontSize: fontSize,
+    textWidth: fontSize * 6,
+    textHeight: fontSize,
+    isInside: true,
+  };
+}
 
 const App: React.FC = () => {
   const [riverData, setRiverData] = useState<RiverData | null>(null);
