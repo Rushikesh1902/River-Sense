@@ -1,0 +1,5 @@
+{
+  "name": "RiverSense - Intelligent Label Placement",
+  "description": "An AI-powered cartographic tool that optimally places river labels inside complex geometries using the widest-section algorithm.",
+  "requestFramePermissions": []
+}
