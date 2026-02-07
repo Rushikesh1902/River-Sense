@@ -1,5 +1,7 @@
 # RiverSense — Intelligent River Label Placement
 
+Deployed Link : https://rushikesh1902.github.io/River-Sense/
+
 A React + TypeScript + Vite application for intelligent label placement on river polygons with strict boundary containment checking.
 
 ## Features
