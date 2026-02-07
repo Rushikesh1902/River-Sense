@@ -1,4 +1,4 @@
-# River Sense — Intelligent River Label Placement
+# RiverSense — Intelligent River Label Placement
 
 A React + TypeScript + Vite application for intelligent label placement on river polygons with strict boundary containment checking.
 
