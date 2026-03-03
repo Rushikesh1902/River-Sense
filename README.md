@@ -1,4 +1,4 @@
-# [RiverSense](https://rushikesh1902.github.io/River-Sense/) — Intelligent River Label Placement
+# [RiverSense](https://rushikesh1902.github.io/River-Sense/) 
 
 
 
